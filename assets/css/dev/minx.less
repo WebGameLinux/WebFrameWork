@@ -1,0 +1,13 @@
+@charset "UTF-8";
+@import "minx/media";
+@import "minx/size";
+@import "config";
+
+
+.pc(@rules){
+   MediaMinQuery(@pc_size,@rules);
+}
+
+.mobile(@rules){
+   MediaMaxQuery(@mobile_size,@rules);
+}
