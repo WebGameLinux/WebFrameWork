@@ -1,0 +1,57 @@
+@charset "UTF-8";
+body,
+html {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  padding: 0;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+ul li {
+  list-style: none;
+}
+body,
+html {
+  filter: alpha(opacity=0);
+  -o-Opacity: 0;
+  -m-Opacity: 0;
+  -ms-Opacity: 0;
+  -moz-Opacity: 0;
+  -khtml-Opacity: 0;
+  -webkit-Opacity: 0;
+  Opacity: 0;
+  -o-filter: blur(10px);
+  -m-filter: blur(10px);
+  -ms-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -khtml-filter: blur(10px);
+  -webkit-filter: blur(10px);
+  filter: blur(10px);
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10px, MakeShadow=false);
+  background-color: rgba(0, 0, 0, 0);
+}
+nav,
+.nav {
+  min-height: 50px;
+}
+@media screen and (min-width: 931px) {
+  .nav {
+    min-height: 60px;
+  }
+}
+nav,
+.nav {
+  min-height: 50px;
+}
+@media screen and (max-width: 930px) {
+  .nav {
+    min-height: 40px;
+  }
+}

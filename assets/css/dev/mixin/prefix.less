@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+//.args(){
+//  @arguments;
+//}
+
+.prefix(@key,@values) when(iskeyword(@key)) and (iskeyword(@values)=false){
+
+  -o-@{key}:@values;
+  -m-@{key}:@values;
+  -ms-@{key}:@values;
+  -moz-@{key}:@values;
+  -khtml-@{key}:@values;
+  -webkit-@{key}:@values;
+
+  @{key} : @values;
+}

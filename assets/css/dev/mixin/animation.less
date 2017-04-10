@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+// 动画帧 兼容性
+.keyframes(@frames,@mode:fadeIn){
+
+  @-o-keyframes @mode {
+    @frames();
+  }
+
+  @-ms-keyframes @mode {
+    @frames();
+  }
+
+  @-moz-keyframes @mode {
+    @frames();
+  }
+
+  @-khtml-keyframes @mode {
+    @frames();
+  }
+
+  @-webkit-keyframes @mode {
+    @frames();
+  }
+
+  @keyframes @mode {
+    @frames();
+  }
+
+}

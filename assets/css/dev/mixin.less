@@ -1,0 +1,13 @@
+@charset "UTF-8";
+@import "mixin/_mixin";
+
+@import "config";
+
+
+.pc(@rules,@_size:@pc_size){
+   .MediaMinQuery(@_size,@rules);
+}
+
+.mobile(@rules,@_size:@mobile_size){
+   .MediaMaxQuery(@_size,@rules);
+}

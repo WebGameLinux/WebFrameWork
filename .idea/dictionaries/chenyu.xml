@@ -1,7 +1,14 @@
 <component name="ProjectDictionaryState">
   <dictionary name="chenyu">
     <words>
+      <w>bottomleft</w>
+      <w>bottomright</w>
+      <w>colcount</w>
+      <w>colgap</w>
+      <w>colwidth</w>
       <w>commom</w>
+      <w>topleft</w>
+      <w>topright</w>
     </words>
   </dictionary>
 </component>

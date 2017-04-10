@@ -1,0 +1,10 @@
+@charset "UTF-8";
+@import "../../mixin";
+@import "mobile/_mobile";
+@import "web/_web";
+
+.dsp(@pc:true,@mobile:true){
+  ._mobile(@pc);
+  ._web(@mobile);
+}
+

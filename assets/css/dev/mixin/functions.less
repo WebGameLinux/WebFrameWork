@@ -1,0 +1,24 @@
+@charset "UTF-8";
+@import "prefix";
+// 空
+.null(){
+  /**[空调用 空规则]**/
+}
+
+// 激活态 函数
+.active(@value:block)when(iskeyword(@value)){
+  display: @value;
+}
+
+// 背景透明度 兼容
+.alpha(@value:100){
+  filter:alpha(Opacity=@value);
+  .prefix(Opacity,@value);
+}
+
+// 毛玻璃效果 兼容
+.blurs(@value:10px)when (ispixel(@value)){
+  .prefix(filter,blur(@value));
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=@value, MakeShadow=false);
+  // IE6~IE9
+}

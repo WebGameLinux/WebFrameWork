@@ -1,33 +1,33 @@
 @charset "UTF-8";
 
 .MediaMinQuery(@ViewSize:0px,@rules){
-  @media screen and (min-width: @ViewSize){
-  @rules;
+  @media screen and (min-width:@ViewSize){
+      @rules();
   }
 }
 
 .MediaMaxQuery(@ViewSize:0px,@rules){
   @media screen and (max-width: @ViewSize){
-  @rules;
+    @rules();
   }
 }
 
 .MediaBetweenQuery(@minSize:0px,@maxSize:1200px,@rules){
   @media screen and (min-width: @minSize) and (max-width:@maxSize){
-  @rules;
+    @rules();
   }
 }
 
 .MediaQueryDirection(@direction,@rules){
   @media all and (orientation:@direction){
-  @rules;
+     @rules();
   }
 }
 
 .MediaDeviceMin(@min:0px,@rules){
 
   @media screen and (min-device-width: @min){
-    @rules;
+    @rules();
   }
 
 }
@@ -35,6 +35,6 @@
 .MediaDeviceMax(@max:100px,@rules){
 
   @media screen and (max-device-width:@max){
-    @rules;
+    @rules();
   }
 }

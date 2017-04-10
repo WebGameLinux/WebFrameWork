@@ -1,0 +1,28 @@
+@charset "UTF-8";
+@import "../../mixin/media";
+@import "../../mixin/functions";
+
+@import "config";
+
+
+.nav_component(@rules,@auto:true,@min-height:50px)when(ispixel(@min-height)){
+
+  nav , .nav{
+    min-height: @min-height;
+  };
+
+  .nav_mobile(@rules,@min-height,@auto);
+  .nav_pc(@rules,@min-height,@auto);
+}
+
+.nav_mobile(@rules,@min-h:@nav-min-height,@off:@nav-auto)when(@off=true) or (@off=mobile){
+  .MediaMaxQuery(@nav-mobile,{
+    @rules();
+  });
+}
+
+.nav_pc(@rules,@min-h:@nav-min-height,@off:@nav-auto)when(@off=true) or (@off=pc){
+  .MediaMinQuery(@nav-pc,{
+    @rules();
+  });
+}

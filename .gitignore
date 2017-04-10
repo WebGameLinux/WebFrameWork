@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+### nodejs template
+.idea/
+.git/
+node_modules/
+.DS_Store
+bower_components/### project template
+!.gitkeep
+bower_components/
+Test/
