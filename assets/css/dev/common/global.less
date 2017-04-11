@@ -1,12 +1,32 @@
 @charset "UTF-8";
 
 body,html{
-  width: 100%;
-  height: auto;
-  min-height: 100%;
   padding: 0;
   margin: 0 auto;
-  position: absolute;
   top:0;
   left: 0;
 }
+
+.container{
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+}
+
+#root{
+  .container;
+  position: absolute;
+}
+
+#scripts-area{
+  display: none;
+}
+
+#debug-area{
+ width: 100%;
+ padding: 10px;
+}
+
+
+
+

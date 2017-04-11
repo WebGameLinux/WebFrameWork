@@ -22,3 +22,25 @@
   filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=@value, MakeShadow=false);
   // IE6~IE9
 }
+
+// 全
+
+.full(){
+  width: 100%;
+  height: 100%;
+}
+
+
+// 清楚空隙
+.clearfix() {
+  zoom:1;
+  &:before{
+    content:'';
+    display:block;
+  }
+  &:after{
+    content:'';
+    display:table;
+    clear:both;
+  }
+}
