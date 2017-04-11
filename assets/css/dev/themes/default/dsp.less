@@ -1,25 +1,13 @@
 @charset "UTF-8";
-@import "../../mixin";
+
 @import "mobile/_mobile";
 @import "web/_web";
+@import "_common";
 
 .dsp(@pc:true,@mobile:true){
 
-  body{
-    .alpha(1);
-    background-color: rgba(0,0,0,.1);
-    background-image: url(@bg-image);
-  }
-
-  .header{
-    .full();
-    .blurs(30px);
-  }
-
-  .container-box{
-    .full();
-    padding:0 5px 0 5px;
-  }
+  // common theme
+  .theme-defaults();
   ._mobile(@pc);
   ._web(@mobile);
 
