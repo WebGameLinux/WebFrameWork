@@ -1,7 +1,6 @@
 /**
  * Created by hewei on 2017-04-12.
  */
-
 ;(function (win) {
     'use strict';
     if(!win){
@@ -244,18 +243,26 @@
 
         },
         rm :function ($eventName,$type) {
-            var $e = this.____.$eventRoot['Container'] || null;
+            var $e = this.____.$eventRoot['Container'] || null,flag =false;
             if($e){
                 var len = $e instanceof  Array && $e.length;
                 if(len>0){
-                    for(var arr in $e){
+                    var arr ='';
+                    for( arr in $e){
+                        if($type && $e[$type]){
+                            arr = $type;
+                        }
                         if(!($e[arr] instanceof Array)){
                             continue ;
                         }
                         for(var i=0,l = $e[arr].length;i<l;i++){
                             if($e[arr][i].eventName === $eventName){
-                                delete  $e[arr][i];
+                                  $e[arr].splice(i,1);
+                                  flag = flag || ($type && $type === arr );
                             }
+                        }
+                        if(flag){
+                            break;
                         }
                     }
                 }
@@ -315,7 +322,6 @@
     });
     console.log(' framework App is Init Ok !');
 })(window||null);
-
 // man like setting
 +(function ($) {
     if(!$ || typeof $ !== 'object' || !$.hasOwnProperty('root')){
@@ -339,8 +345,6 @@
              }]]);
     console && console.log('alias for man like to use framework ok !');
 })($App);
-
-
 // __func insert
 +(function ($) {
     // deep copy object function
@@ -361,9 +365,7 @@
             return newobj;
     });
 })($App);
-
 // module list
-
 // carousel
 +(function ($) {
 
@@ -398,7 +400,6 @@
     });
     console && console.log('carousel module install framework ok !');
 })($App);
-
 // nav
 +(function ($) {
     if(!$ || typeof $ !== 'object' || !$.hasOwnProperty('root')){
@@ -435,9 +436,7 @@
     });
     console && console.log('nav module install framework ok !');
 })($App);
-
 // model list
-
 // user scope
 +(function ($) {
     if(!$ || typeof $ !== 'object' || !$.hasOwnProperty('root')){
