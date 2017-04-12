@@ -1,0 +1,96 @@
+@charset "UTF-8";
+@import "config";
+@import "../../mixin/functions";
+@import "../../mixin/size";
+@import "../../mixin/media";
+
+.Carousel-Common(){
+
+  .Carousel-container-box{
+    display: block;
+    overflow: hidden;
+  }
+
+  .Carousel-Controller{
+    width: 100%;
+    .em(min-height,20);
+    position: relative;
+  }
+
+  .Carousel-item{
+    width: 100%;
+    height: 100%;
+    display: none;
+    float: left;
+    .alpha(0);
+    .transition(display 6s);
+    .transition(Opacity 3s);
+  }
+
+  .Carousel-item[class~="active"]{
+    display: block;
+    .alpha(1);
+  }
+
+  .Carousel-item-tips{
+    display: none;
+    width:100%;
+    .em(min-height,10);
+    position: relative;
+  }
+
+  .Carousel-item-tips[class~="on"]{
+    display: block;
+  }
+
+  .Carousel-item-tips[class~="off"]{
+    display: none;
+  }
+
+}
+
+.Carousel-items-group(@wrapW:100%,@wrapH:100%,@name:''){
+  .Carousel-items-@{name}group{
+    width: @wrapW;
+    height: @wrapH;
+    display: block;
+    overflow: hidden;
+  }
+}
+
+.Carousel-mobile(@size:930px,@rules:{},@mode:1)when(isnumber(@mode))and (@mode>0){
+  // common land
+  .MediaMaxQuery(@size,{
+    .Carousel-mobile-wrap(@mode);
+    .Carousel-mobile-table(@mode);
+    .Carousel-mobile-card(@mode);
+    .Carousel-mobile-stream(@mode);
+    @rules();
+  });
+
+}
+
+.Carousel-mobile-wrap(@mode)when(isnumber(@mode)) and (@mode=1){
+
+}
+
+.Carousel-mobile-table(@mode)when(isnumber(@mode)) and (@mode=2){
+
+}
+
+.Carousel-mobile-card(@mode)when(isnumber(@mode)) and (@mode=3){
+
+}
+
+.Carousel-mobile-stream(@mode)when(isnumber(@mode)) and (@mode=4){
+
+}
+
+.use_carousel(@wrapW:@WrapW,@wrapH:@WrapH,@name:@Name,@size:@Size,@rules:@rules_extends,@mode:@Mode){
+  .Carousel-Common();
+  .Carousel-items-group(@wrapW,@wrapH,@name);
+  .Carousel-mobile(@size,@rules,@mode);
+}
+
+
+

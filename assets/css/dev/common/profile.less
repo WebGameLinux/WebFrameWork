@@ -1,8 +1,20 @@
 @charset "UTF-8";
 @import "../mixin/functions";
 
-img,span,div,h1,h2,h3,h4,h5,h6,section,dt,thead,td,tr,html,body{
+img.ul,li,ol,span,div,h1,h2,h3,h4,h5,h6,section,dt,thead,td,tr,html,body{
   .clearfix();
+  margin: 0 auto;
+  padding: 0;
+}
+
+ul, menu, dir {
+  display: block;
+  list-style-type: none;
+  .prefix(margin-before, 0);
+  .prefix(margin-afte, 0);
+  .prefix(margin-start, 0);
+  .prefix(margin-end, 0);
+  .prefix(padding-start, 0);
 }
 
 a {

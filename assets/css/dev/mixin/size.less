@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
-.em(@px:0){
-  @px / 16  em;
+.em(@key,@px:0){
+    @{key} : @px / 16  em;
 }
 
-.px(@em:0){
-  @em * 16 px;
+.px(@key,@em:0){
+      @{key} : @em * 16 px;
 }

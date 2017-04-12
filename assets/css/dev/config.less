@@ -1,18 +1,25 @@
 @charset "UTF-8";
+// info
+  @version : '0.0.1';
+  @author: 'hewei';
 
-@media_size : 930px;
+// color
+  @withe: #ffffff;
+  @black: #000000;
+  @blue: #0000ff;
+  @red: #ff0000;
+  @green: #00ff00;
+  @yel:yellow;
 
-@pc_size:931px;
-@mobile_size:@media_size;
+// size
+  @media_size : 930px;
+  @pc_size:931px;
+  @mobile_size:@media_size;
 
-@version : '0.0.1';
-@author: 'hewei';
+// data path
+  @base_path:"..";
+  @images_path:"@{base_path}/images";
+  @app_image_v1:"@{images_path}/v1";
 
-@withe: #ffffff;
-@black: #000000;
-@blue: #0000ff;
-@red: #ff0000;
-@green: #00ff00;
-@yellow: #ff0f;
-
-@bg-image:"../images/v1/BANNER.jpg";
+// src images
+  @bg-image:"@{app_image_v1}/BANNER.jpg";
