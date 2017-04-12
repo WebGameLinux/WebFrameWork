@@ -13,7 +13,7 @@
         var TOP = this;
         this.root = $root || 0;
         this.version = '0.0.1';
-        this.____ = {console:log};
+        this.____ = {console:log,$eventRoot:[]};
         function log ($msg,$level) {
             if($msg){
                 var _ = console || new $Console,_def = TOP.config('console_msg');
@@ -148,11 +148,12 @@
             }
             return -1;
         },
-        __use:function ($modules) {
+        __use:function ($modules,$task,$timeout) {
 
         },
         __insert :function ($name,$define) {
            var ret = this.__heap[$name] ? ( this.__func('console')($name +' name is exists! ','error') && -1 ):this.__heap[$name] = this.__stack.push(typeof $define === 'function'? $define(this):$define ) && this.__stack.length-1;
+           this.emitter($name,'install');
            this.__auto($name,$define);
            return (ret>=0)?1:-1;
         },
@@ -203,10 +204,73 @@
             if(!$define && $private_fn){
                 return that[$private_fn] || function () { return -1;};
             }
+        },
+        emitter:function ($eventName,$type,$args) {
+            var $e = this.____.$eventRoot;
+
+        },
+        on:function ($eventObject,$define) {
+            var $e = this.____.$eventRoot;
+
+            if(!$e['Types']){
+
+                $e['Types'] = [];
+                $e['Types']['event'] = {
+                    type:'event',
+                    args:['name','type','args'],
+                    up:true,
+                    down:true,
+                    left:true,
+                    right:true,
+                    index : 0
+                };
+            }
+
+            if(!$e['Container']){
+                $e['Container'] = [];
+                $e['Container']['event'] = [
+                    {
+                         eventName:'$e',eventType:$e['Types']['event'],$define:function () {
+                              var len = this.eventType.args.length;
+                              console && console.log(len);
+                              ++this.eventState;
+                         },
+                        eventState : 0
+                    }
+                ];
+            }
+
+
+
+        },
+        rm :function ($eventName,$type) {
+            var $e = this.____.$eventRoot['Container'] || null;
+            if($e){
+                var len = $e instanceof  Array && $e.length;
+                if(len>0){
+                    for(var arr in $e){
+                        if(!($e[arr] instanceof Array)){
+                            continue ;
+                        }
+                        for(var i=0,l = $e[arr].length;i<l;i++){
+                            if($e[arr][i].eventName === $eventName){
+                                delete  $e[arr][i];
+                            }
+                        }
+                    }
+                }
+                return true;
+            }
+            this.__func('console')('event root object not exists!','warn');
+            return false;
+        },
+        add:function ($eventType,$args) {
+            var $e = this.____.$eventRoot;
+        },
+        __list :function ($eventType) {
 
         },
         config : function ($keys,$value) {
-
                 if(!this.__stack['config']){
                     this.__stack['config'] = {};
                 }
@@ -226,7 +290,6 @@
                        return _[$keys] || null;
                    }
                 }
-
         },
         clean : function ($key) {
 
@@ -259,7 +322,6 @@
         console && console.error('framework Object ( $App )is not exists !');
         return -2;
     }
-   
     $.alias([['use',$.__use],
              ['require',function($path){
                   var ret = $.__require($path);
@@ -281,7 +343,6 @@
 
 // __func insert
 +(function ($) {
-
     // deep copy object function
     $.__func('cloneObj',function(obj){
 
@@ -296,16 +357,16 @@
                     newobj[i] = typeof obj[i] === 'object' ? $.__func('cloneObj')(obj[i]) : obj[i];
                 }
             }
+
             return newobj;
     });
-
-
 })($App);
 
 // module list
 
 // carousel
 +(function ($) {
+
     if(!$ || typeof $ !== 'object' || !$.hasOwnProperty('root')){
         console && console.error('framework Object ( $App )is not exists !');
         return -2;
@@ -383,7 +444,7 @@
         console && console.error('framework Object ( $App )is not exists !');
         return -2;
     }
-    //$.use(['nav','carousel']);
-    //var car = new $.module('carousel');
+
+
     console && console.log('user model running with framework !');
 })($App);
