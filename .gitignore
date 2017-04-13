@@ -10,6 +10,7 @@ bower_components/
 Test/
 !.gitkeep
 package.json
+assets/images/
 =======
 # Build and Release Folders
 bin/
