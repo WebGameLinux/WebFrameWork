@@ -3,10 +3,35 @@
 
 ._mobile(@off:true,@_size:@mobile_size) when (@off=true) or (@off=mobile){
   .mobile({
-
-
-
-  
+    .copyright-box{
+      font-size: 12px;
+      padding-top: 8%;
+    }
+    .header,.Carousel-item{
+      max-height:580px;
+      min-height:50px;
+      height: auto;
+      width: 100%;
+    }
+    .area-wrap{
+      max-height:780px;
+      min-height:50px;
+      height: auto;
+      width: 100%;
+    }
 
   },@_size);
+
+  .MediaMaxQuery(250px,{
+    .logo{
+      width: 100%;
+    }
+    .nav-logo-img{
+      width: 125px;
+      height: 25px;
+      margin: 0 auto;
+      display: block;
+      padding-top:10px;
+    }
+  });
 }

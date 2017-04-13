@@ -37,6 +37,23 @@ html {
   display: -webkit-flex;
   display: flex;
 }
+.full-width {
+  width: 100%;
+  height: auto;
+}
+.line {
+  width: 100%;
+}
+.text {
+  font-size: 16px;
+}
+.align-center {
+  text-align: center;
+}
+.center-box {
+  display: block;
+  margin: 0 auto;
+}
 footer {
   width: 100%;
   height: auto;
@@ -45,23 +62,44 @@ footer {
 .yellow {
   background-color: yellow;
 }
+.font-yellow {
+  color: yellow;
+}
 .red {
   background-color: red;
+}
+.font-red {
+  color: red;
 }
 .blue {
   background-color: blue;
 }
+.font-blue {
+  color: blue;
+}
 .green {
   background-color: green;
+}
+.font-green {
+  color: green;
 }
 .white {
   background-color: white;
 }
+.font-white {
+  color: white;
+}
 .black {
   background-color: black;
 }
+.font-black {
+  color: black;
+}
 .pink {
   background-color: pink;
+}
+.font-pink {
+  color: pink;
 }
 img.ul,
 li,
@@ -216,7 +254,8 @@ body:after {
 }
 ul,
 menu,
-dir {
+dir,
+p {
   display: block;
   list-style-type: none;
   -o-margin-before: 0;
@@ -349,6 +388,7 @@ nav,
   width: 100%;
   height: 100%;
   display: block;
+  margin: 0 auto;
   overflow: hidden;
 }
 body {
@@ -360,21 +400,73 @@ body {
   -khtml-Opacity: 1;
   -webkit-Opacity: 1;
   Opacity: 1;
-  background-image: url("../images/v1/BANNER.jpg");
 }
 .header {
   width: 100%;
   height: 100%;
 }
+.copyright {
+  min-height: 90px;
+  max-height: 100px;
+  height: auto;
+  background-color: #15b189;
+}
 .container-box {
   width: 100%;
   height: 100%;
 }
-.theme-simple-one {
-  background-color: rgba(0, 0, 0, 0.6);
+.wrap-image {
+  width: 100%;
+  min-width: 99%;
+  min-height: 50%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.theme-simple-one,
+footer {
+  background-color: #15b189;
 }
 .theme-alpha {
   background-color: rgba(0, 0, 0, 0);
+}
+.theme-copyright-size {
+  width: 90%;
+  min-width: 30%;
+  max-height: 100%;
+  height: auto;
+}
+.logo {
+  display: block;
+  max-height: 100%;
+  min-height: 50px;
+  height: auto;
+  width: 250px;
+}
+.nav-logo-img {
+  width: 250px;
+  height: 50px;
+}
+.copyright-master,
+.copyright-number {
+  width: auto;
+  display: inline-block;
+  margin: 0 auto;
+}
+.copyright-box {
+  padding-top: 5%;
+}
+.copyright-master a:hover,
+.copyright-number a:hover {
+  color: yellow;
+}
+#daily-ad-info {
+  min-height: 363px;
+  max-height: 400px;
+  height: auto;
+  width: 100%;
+  background-color: white;
 }
 ::-webkit-scrollbar {
   display: none;
@@ -399,4 +491,35 @@ div -webkit-scrollbar {
   -khtml-Opacity: 0;
   -webkit-Opacity: 0;
   Opacity: 0;
+}
+@media screen and (max-width: 1108px) {
+  .copyright-box {
+    font-size: 12px;
+    padding-top: 8%;
+  }
+  .header,
+  .Carousel-item {
+    max-height: 580px;
+    min-height: 50px;
+    height: auto;
+    width: 100%;
+  }
+  .area-wrap {
+    max-height: 780px;
+    min-height: 50px;
+    height: auto;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 250px) {
+  .logo {
+    width: 100%;
+  }
+  .nav-logo-img {
+    width: 125px;
+    height: 25px;
+    margin: 0 auto;
+    display: block;
+    padding-top: 10px;
+  }
 }

@@ -1,9 +1,19 @@
 @charset "UTF-8";
+@import "../config";
+
 
 .em(@key,@px:0){
     @{key} : @px / 16  em;
 }
 
-.px(@key,@em:0){
+.pxe(@key,@em:0){
       @{key} : @em * 16 px;
+}
+
+.rem(@key,@px){
+    @{key} : @px/@root_font_size  rem;
+}
+
+.pxr(@key,@rem){
+   @{key} : @rem * @root_font_size px;
 }

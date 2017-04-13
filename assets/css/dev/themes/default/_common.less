@@ -2,29 +2,83 @@
 @import "../../mixin";
 
 .theme-defaults(){
-
+  @nav-color: rgb(21,177,137);
+  @copyright-area-color:@nav-color;
+  @daily-ad-info-bgcolor:white;
   body{
     .alpha(1);
-    background-image: url(@bg-image);
   }
 
   .header{
     .full();
   }
 
+  .copyright{
+    min-height: 90px;
+    max-height: 100px;
+    height: auto;
+    background-color: @copyright-area-color;
+  }
 
   .container-box{
     .full();
   }
-
-  .theme-simple-one{
-     background-color: rgba(0,0,0,.6);
+  .wrap-image{
+    width: 100%;
+    min-width: 99%;
+    max-width: 100%;
+    min-height: 50%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  .theme-simple-one,footer{
+     background-color: @nav-color;
   }
 
   .theme-alpha{
     background-color:rgba(0,0,0,0);
   }
+  .theme-copyright-size{
+     width: 90%;
+     min-width:30%;
+     max-height:100%;
+     height:auto;
+  }
+  .logo{
+     display: block;
+     max-height: 100%;
+     min-height:50px;
+     height: auto;
+     width: 250px;
+   }
 
+  .nav-logo-img{
+    width: 250px;
+    height: 50px;
+  }
+
+  .copyright-master,.copyright-number{
+     width: auto;
+     display: inline-block;
+     margin: 0 auto;
+  }
+  .copyright-box{
+    padding-top:5%;
+  }
+
+  .copyright-master a:hover , .copyright-number a:hover{
+     color: yellow;
+  }
+
+  #daily-ad-info{
+    min-height: 363px;
+    max-height: 400px;
+    height: auto;
+    width: 100%;
+    background-color: @daily-ad-info-bgcolor;
+  }
   .no-scrollbar('html');
   .no-scrollbar(div);
 
