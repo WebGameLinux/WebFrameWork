@@ -4,6 +4,40 @@
 @import "../../mixin/size";
 @import "../../mixin/media";
 
+@rules_extends:{
+   /**[ mobile rules carousel ]**/
+   .Carousel-items-group(@wrapW:100%,@min_height:100%,@overflow:visible,@name:@Name){
+      @group:~"Carousel-items-@{name}group" ;
+
+     .area-wrap[class~="mobile-content-auto"]{
+       max-height:500%;
+       min-height:50px;
+       width: 100%;
+       height: auto;
+     }
+
+     .Carousel-container-box{
+       min-height: @min_height;
+       height: auto;
+     }
+
+     .@{group} {
+       width: @wrapW;
+       min-height: @min_height;
+       display: block;
+       margin: 0 auto;
+       overflow: @overflow;
+     }
+
+     .@{group}[class~='mobile-off'] .Carousel-item{
+       display: block;
+       .alpha(1);
+     }
+   };
+
+  .Carousel-items-group();
+};
+
 .Carousel-Common(){
 
   .Carousel-container-box{

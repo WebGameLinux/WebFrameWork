@@ -1,0 +1,34 @@
+@charset "UTF-8";
+@import "filter";
+
+
+ .pixel-line(@who,@ab:before,@bgcolor:black,@number:1px,@alpha:0.2){
+
+   .@{who}:@{ab}{
+     content: "";
+     width: 100%;
+     font-size: 1px;
+     height:1px;
+     display: block;
+     background-color:@bgcolor;
+     color:@bgcolor;
+     .alpha(@alpha);
+   }
+
+ }
+
+ .pixel-top-line(@who,@bgcolor:black,@number:1px,@alpha:0.2){
+   .pixel-line(@who,before,@bgcolor,@number,@alpha);
+ }
+
+ .pixel-bottom-line(@who,@bgcolor:black,@number:1px,@alpha:0.2){
+  .pixel-line(@who,after,@bgcolor,@number,@alpha);
+ }
+
+ .one-pixel-top(@who,@bgcolor:black,@alpha:0.2){
+   .pixel-top-line(@who,@bgcolor,1px,@alpha);
+ }
+
+ .one-pixel-bottom(@who,@bgcolor:black,@alpha:0.2){
+   .pixel-bottom-line(@who,@bgcolor,1px,@alpha);
+ }

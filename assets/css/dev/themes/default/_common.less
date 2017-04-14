@@ -1,10 +1,10 @@
 @charset "UTF-8";
 @import "../../mixin";
+@import "skin";
+@import "../../config";
 
 .theme-defaults(){
-  @nav-color: rgb(21,177,137);
-  @copyright-area-color:@nav-color;
-  @daily-ad-info-bgcolor:white;
+
   body{
     .alpha(1);
   }
@@ -39,7 +39,7 @@
   }
 
   .theme-alpha{
-    background-color:rgba(0,0,0,0);
+    background-color:@theme-alpha;
   }
   .theme-copyright-size{
      width: 90%;
@@ -71,7 +71,7 @@
   }
 
   .copyright-master a:hover , .copyright-number a:hover{
-     color: yellow;
+     color: @copyright-master-hover-color;
   }
 
   #daily-ad-info{
@@ -81,7 +81,124 @@
     width: 100%;
     background-color: @daily-ad-info-bgcolor;
   }
+  #page-tools-area{
+    width:auto;
+    height:auto;
+    display: block;
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    z-index: 1000;
+  }
+  .theme-info-bgcolor{
+     background-color:@theme-info-bgcolor;
+  }
+  .theme-advantage-bgcolor{
+    background-color:@theme-advantage-bgcolor;
+  }
+  .theme-cwt-bgcolor{
+    background-color:@theme-cwt-bgcolor;
+  }
 
+  .theme-header-item-bgcolor-1,.theme-header-item-bgcolor-2{
+    background-color:@theme-header-item-bgcolor-1;
+  }
+
+  .theme-source-bgcolor{
+    background-color:@theme-source-bgcolor;
+  }
+
+  .theme-qrcode-size{
+     min-height: 10px;
+     min-width: 10px;
+     max-width: 200px;
+     max-height: 200px;
+     width: auto;
+     height: auto;
+     padding-top: 40px;
+     padding-bottom: 20px;
+  }
+
+  .theme-btn-submit{
+    width: 200px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 16px;
+    padding: 0 20px;
+    border-radius: .2rem;
+    background-color: @theme-info-bgcolor;
+    color: white !important;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .theme-btn-submit:hover,.input:hover{
+    box-shadow: 0 3px 3px #acd5e8;
+    border-color: #e1e5ec !important;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .input{
+    width: 200px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 16px;
+    padding: 0 20px;
+    border-radius: .2rem;
+    background-color: rgba(0,0,0,0);
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .theme-portrait{
+     min-width: 50px;
+     min-height: 50px;
+     height: 150px;
+     width: 150px;
+     border-radius: 90px;
+  }
+  .unable{
+    background-color: @unable-bgcolor;
+  }
+
+  .unable:hover,.unable:active,.unable:visited,.unable:focus{
+    .unable;
+  }
+
+  .test-info{
+     width: 90%;
+     max-height: 300px;
+     height: auto;
+     padding: 20px 0 20px 0;
+     margin: 0 auto;
+     margin-bottom: 20px;
+  }
+
+  .test-info:after{
+    content: "";
+    width: 100%;
+    font-size: 1px;
+    height:1px;
+    display: block;
+    background-color:@theme-info-bgcolor;
+    color:@theme-info-bgcolor;
+    .alpha(0.2);
+  }
+  .form{
+    padding-bottom: 20px;
+  }
+  .logo-lang{
+    padding-top: 4px;
+    padding-bottom: 40px;
+  }
+  .username{
+    background-image: url(@username-input-image);
+    background-size: cover;
+  }
+  .password{
+    background-image: url(@password-input-image);
+    background-size: cover;
+  }
   .no-scrollbar('html');
   .no-scrollbar(div);
 

@@ -1,6 +1,8 @@
 @charset "UTF-8";
 @import "prefix";
 @import "functions/filter";
+@import "functions/onepixel";
+
 
 // 空
 .null(){
@@ -12,16 +14,8 @@
   display: @value;
 }
 
-// 背景透明度 兼容
-.alpha(@value:100){
-  filter:alpha(Opacity=@value);
-  .prefix(Opacity,@value);
-}
 
-
-
-// 全
-
+// 全屏
 .full(){
   width: 100%;
   height: 100%;

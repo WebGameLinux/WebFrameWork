@@ -2,6 +2,12 @@
 @import "../prefix";
 // 滤镜 效果
 
+// 背景透明度 兼容
+.alpha(@value:100){
+  filter:alpha(Opacity=@value);
+  .prefix(Opacity,@value);
+}
+
 // 1. 毛玻璃效果 兼容 [模糊滤镜] blur 模糊度
 .blur(@value:10px)when (ispixel(@value)){
   .prefix(filter,blur(@value));
@@ -11,7 +17,7 @@
 
 // 2. grayscale 灰度
 
-// 3. sepia褐色（求专业指点翻译）
+// 3. sepia 褐色（求专业指点翻译）
 
 // 4. saturate 饱和度
 

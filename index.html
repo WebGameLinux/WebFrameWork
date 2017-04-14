@@ -18,7 +18,7 @@
 <body id="root">
 
 <section id="content-area" class="main-box container-box theme-default">
-    <nav class="nav theme-simple-one">
+    <nav class="nav theme-simple-one" id="page-top">
             <div class="logo">
                 <img src="assets/images/v1/logo+font_420X95_white.png" class="nav-logo-img">
             </div>
@@ -34,15 +34,11 @@
                 </div>
             </div>
             <ul class="Carousel-items-default-group">
-                <li class="Carousel-item active">
-                    <img src="assets/images/v1/BANNER.jpg" class="wrap-image">
+                <li class="Carousel-item theme-header-item-bgcolor-1 active">
+                    <img src="assets/images/v1/banner-mobile.png" class="wrap-image">
                 </li>
-                <li class="Carousel-item green">
-
-                </li>
-                <li class="Carousel-item yellow">
-
-                </li>
+                <!--<li class="Carousel-item theme-header-item-bgcolor-2">
+                </li>-->
             </ul>
             <div class="Carousel-item-tips on">
                 <div class="tips"></div>
@@ -51,11 +47,11 @@
             </div>
         </div>
     </header>
-    <div class="area-wrap">
+    <div class="area-wrap theme-info-bgcolor" >
         <img src="assets/images/v1/info.jpg" class="wrap-image">
     </div>
-    <div class="area-wrap">
-        <div class="Carousel-container-box container-box">
+    <div class="area-wrap mobile-content-auto theme-source-bgcolor">
+        <div class="Carousel-container-box container-box mobile-off">
             <div class="Carousel-Controller">
                 <div class="Carousel-Controller-left prev">
                     <a class="btn center" href="javascript:void(0);"></a>
@@ -64,12 +60,15 @@
                     <a class="btn center" href="javascript:void(0);"></a>
                 </div>
             </div>
-            <ul class="Carousel-items-default-group">
+            <ul class="Carousel-items-default-group mobile-off" data-mobile="1108">
                 <li class="Carousel-item white active">
                     <img src="assets/images/v1/source_1.png" class="wrap-image">
                 </li>
                 <li class="Carousel-item white">
                     <img src="assets/images/v1/source_2.png" class="wrap-image">
+                </li>
+                <li class="Carousel-item">
+                    <img src="assets/images/v1/source_3.png" class="wrap-image">
                 </li>
             </ul>
             <div class="Carousel-item-tips on">
@@ -79,18 +78,53 @@
             </div>
         </div>
     </div>
-    <div class="area-wrap">
+    <div class="area-wrap theme-advantage-bgcolor">
         <img src="assets/images/v1/4.png" class="wrap-image">
     </div>
     <div class="area-wrap" id="daily-ad-info">
-
-    </div>
-    <div class="area-wrap" id="company-with-test">
-        <div class="test-info">
+        <div>
 
         </div>
-        <div class="company-info">
+    </div>
+    <div class="area-wrap theme-cwt-bgcolor" id="company-with-test">
+        <div class="test-info center-box">
+                <div class="form center-box">
+                    <div class="portrait center-box shape-circle theme-portrait">
+                        <img src="assets/images/v1/portrait.png" class="center-box wrap-image shape-circle">
+                    </div>
 
+                    <div class="input username center-box">
+                        ::username
+                    </div>
+                    <span class="small-tip h8 font-red"> 体验账号 [点击复制] </span>
+                    <div class="small-tip input password center-box">
+                        ::password
+                    </div>
+                    <span class="h8 font-red"> 体验账号密码 [点击复制] </span>
+                    <a class="btn theme-btn-submit font-white center-box align-center" href="http://dsp.hyperyoung.com" target="_blank">
+                            立即体验
+                    </a>
+                </div>
+        </div>
+        <div class="company-info">
+                <div class="theme-content-box font-white">
+                    <div class="company-name center-box align-center h4 strong">广州哈尚统领信息科技有限公司</div>
+                    <span class="logo-lang center-box align-center">华南地区品牌互动营销领先服务商</span>
+                    <div class="concat-us-info center-box">
+                          <div class="mobile-phone-number center-box align-center h6">
+                              商务: 183-2003-5975(推荐)
+                          </div>
+                          <div class="tel-phone-number center-box align-center h6">
+                              总机: 020-6124-0620
+                          </div>
+                          <div class="address center-box align-center h6">
+                             地址: 广州市天河区建工路13号401室 (总部)
+                          </div>
+                    </div>
+                    <div class="qrcode theme-qrcode-size center-box">
+                        <img src="assets/images/v1/qrcode.jpg" class="center-box wrap-image">
+                    </div>
+                </div>
         </div>
     </div>
     <footer>
@@ -113,6 +147,27 @@
     </footer>
 </section>
 
+<section id="page-tools-area">
+        <div class="link-tools off">
+             <a href="#page-top">
+                    top
+             </a>
+             <a href="javascript:$App.$menu('more');">
+                    more
+             </a>
+             <div class="more-menu off">
+                 <a href="https://www.hyperyoung.com">
+                     哈尚官网
+                 </a>
+                 <a href="http://dsp.hyperyoung.com">
+                     体验dsp系统
+                 </a>
+                 <a href="javascript:$App.$helper('custom-service');">
+                     客服咨询
+                 </a>
+             </div>
+        </div>
+</section>
 <section id="scripts-area">
     <script  type="text/javascript">
     </script>

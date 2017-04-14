@@ -1,11 +1,12 @@
 @charset "UTF-8";
 @import "../mixin/functions";
-
+@import "../config";
 body,html{
   padding: 0;
   margin: 0 auto;
   top:0;
   left: 0;
+  font-size:@Root_Font_Size;
 }
 
 .container{
@@ -112,4 +113,42 @@ footer{
 }
 .font-pink{
   color: pink;
+}
+.strong{
+  font-weight: bold;
+}
+.h1{
+  font-size: 50px;
+}
+.h2{
+  font-size: 40px;
+}
+.h3{
+  font-size:30px;
+}
+
+.h4{
+  font-size: 20px;
+}
+.h5{
+  font-size: 18px;
+}
+.h6{
+  font-size: 16px;
+}
+.h7{
+  font-size: 14px;
+}
+.h8{
+  font-size: 12px;
+}
+.h9{
+  font-size: 10px;
+}
+.h10{
+  font-size: 8px;
+}
+
+.btn{
+  display: block;
 }

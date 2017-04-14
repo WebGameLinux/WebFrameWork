@@ -1,24 +1,25 @@
 @charset "UTF-8";
 @import "../../../mixin";
+@import "../skin";
 
 ._mobile(@off:true,@_size:@mobile_size) when (@off=true) or (@off=mobile){
   .mobile({
     .copyright-box{
       font-size: 12px;
-      padding-top: 8%;
     }
     .header,.Carousel-item{
-      max-height:580px;
+      max-height:100%;
       min-height:50px;
       height: auto;
       width: 100%;
     }
     .area-wrap{
-      max-height:780px;
+      max-height:200%;
       min-height:50px;
       height: auto;
       width: 100%;
     }
+
 
   },@_size);
 
@@ -32,6 +33,42 @@
       margin: 0 auto;
       display: block;
       padding-top:10px;
+    }
+  });
+
+  .MediaMaxQuery(280px,{
+    .theme-btn-submit{
+      max-width:80%;
+      height: 25px;
+      line-height: 25px;
+      font-size: 12px;
+      padding: 0 10px;
+      border-radius: .2rem;
+      background-color: @theme-info-bgcolor;
+      color: white !important;
+      cursor: pointer;
+      text-align: center;
+    }
+    .theme-btn-submit:hover{
+      font-size: 18px;
+    }
+    .input{
+      max-width:80%;
+      height: 25px;
+      line-height: 25px;
+      font-size: 12px;
+      padding: 0 10px;
+      border-radius: .2rem;
+      background-color:rgba(0,0,0,0);
+      cursor: pointer;
+      text-align: center;
+    }
+    .theme-portrait {
+      height: 100px;
+      width: 100px;
+    }
+    .theme-qrcode-size{
+      width: 60%;
     }
   });
 }
