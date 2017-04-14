@@ -3,3 +3,12 @@
 
 @import "componetns";
 @import "themes/_themes";
+
+
+.install_theme(@theme:@choose_theme)when(@theme=dsp){
+  .dsp();
+}
+
+.install_theme(@theme:@choose_theme)when(@theme=def){
+  //.def();
+}
