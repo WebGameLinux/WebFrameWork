@@ -1,0 +1,29 @@
+@charset "UTF-8";
+@import "../prefix";
+// 滤镜 效果
+
+// 1. 毛玻璃效果 兼容 [模糊滤镜] blur 模糊度
+.blur(@value:10px)when (ispixel(@value)){
+  .prefix(filter,blur(@value));
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=@value, MakeShadow=false);
+  // IE6~IE9
+}
+
+// 2. grayscale 灰度
+
+// 3. sepia褐色（求专业指点翻译）
+
+// 4. saturate 饱和度
+
+// 5. hue-rotate 色相旋转
+
+// 6. invert 反色
+
+// 7. opacity 透明度
+
+// 8. brightness 亮度
+
+// 9. contrast 对比度
+
+// 10. drop-shadow 阴影
+
