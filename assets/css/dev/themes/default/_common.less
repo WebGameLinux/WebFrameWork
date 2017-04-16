@@ -8,18 +8,19 @@
   body{
     .alpha(1);
   }
-
+  body,div,section{
+    transform: translateX(-top);//你计算出来的left值
+    transition: transform 1s;
+  }
   .header{
     .full();
   }
-
   .copyright{
     min-height: 90px;
     max-height: 100px;
     height: auto;
     background-color: @copyright-area-color;
   }
-
   .container-box{
     .full();
   }
@@ -44,44 +45,7 @@
      max-height:100%;
      height:auto;
   }
-  .logo{
-     display: block;
-     max-height: 100%;
-     min-height:50px;
-     height: auto;
-     width: 250px;
-   }
-  .nav-logo-img{
-    width: 250px;
-    height: 50px;
-  }
-  .copyright-master,.copyright-number{
-     width: auto;
-     display: inline-block;
-     margin: 0 auto;
-  }
-  .copyright-box{
-    padding-top:40px;
-  }
-  .copyright-master a:hover , .copyright-number a:hover{
-     color: @copyright-master-hover-color;
-  }
-  #daily-ad-info{
-    min-height: 363px;
-    max-height: 400px;
-    height: auto;
-    width: 100%;
-    background-color: @daily-ad-info-bgcolor;
-  }
-  #page-tools-area{
-    width:auto;
-    height:auto;
-    display: block;
-    position: fixed;
-    bottom: 10px;
-    right: 15px;
-    z-index: 1000;
-  }
+
   .theme-info-bgcolor{
      background-color:@theme-info-bgcolor;
   }
@@ -91,11 +55,9 @@
   .theme-cwt-bgcolor{
     background-color:@theme-cwt-bgcolor;
   }
-
   .theme-header-item-bgcolor-1,.theme-header-item-bgcolor-2{
     background-color:@theme-header-item-bgcolor-1;
   }
-
   .theme-source-bgcolor{
     background-color:@theme-source-bgcolor;
   }
@@ -109,7 +71,6 @@
      padding-top: 40px;
      padding-bottom: 20px;
   }
-
   .theme-btn-submit{
     width: 200px;
     height: 35px;
@@ -129,6 +90,51 @@
     font-size: 20px;
     font-weight: bold;
   }
+  .theme-portrait{
+    min-width: 50px;
+    min-height: 50px;
+    height: 150px;
+    width: 150px;
+    border-radius: 90px;
+  }
+  .logo{
+    display: block;
+    max-height: 100%;
+    min-height:50px;
+    height: auto;
+    width: 250px;
+  }
+  .nav-logo-img{
+    width: 250px;
+    height: 50px;
+  }
+  .copyright-master,.copyright-number{
+    width: auto;
+    display: inline-block;
+    margin: 0 auto;
+  }
+  .copyright-box{
+    padding-top:40px;
+  }
+  .copyright-master a:hover , .copyright-number a:hover{
+    color: @copyright-master-hover-color;
+  }
+  #daily-ad-info{
+    min-height: 363px;
+    max-height: 400px;
+    height: auto;
+    width: 100%;
+    background-color: @daily-ad-info-bgcolor;
+  }
+  #page-tools-area{
+    width:auto;
+    height:auto;
+    display: block;
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    z-index: 1000;
+  }
   .input{
     width: 200px;
     height: 35px;
@@ -141,30 +147,19 @@
     text-align: center;
     margin-top: 10px;
   }
-  .theme-portrait{
-     min-width: 50px;
-     min-height: 50px;
-     height: 150px;
-     width: 150px;
-     border-radius: 90px;
-  }
   .unable{
     background-color: @unable-bgcolor;
   }
-
   .unable:hover,.unable:active,.unable:visited,.unable:focus{
     .unable;
   }
-
   .test-info{
      width: 90%;
      max-height: 300px;
      height: auto;
      padding: 20px 0 20px 0;
-     margin: 0 auto;
-     margin-bottom: 20px;
+     margin: 0 auto 20px;
   }
-
   .test-info:after{
     content: "";
     width: 100%;
@@ -192,6 +187,5 @@
   }
   .no-scrollbar('html');
   .no-scrollbar(div);
-
 }
 
