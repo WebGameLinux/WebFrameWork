@@ -4,7 +4,6 @@
 // polyfill
 ;(function () {
     // polyfill for MDN
-
     if(typeof Object.defineProperties!=='function') {
         function defineProperties(obj, properties) {
             function convertToDescriptor(desc) {
@@ -84,7 +83,6 @@
             return target;
         };
     }
-
 })();
 //App constructor
 +(function (win) {
@@ -268,6 +266,7 @@
     };
     win['__App'] =App;
 })(window||null);
+
 //App builtin api
 +(function ($) {
     if(typeof $ !=='function'){
@@ -588,6 +587,16 @@
     $.config('path',{
         jq:'https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js'
     });
-
+    $.alias([
+        [
+            '$menu',function ($args) {
+                    console && console.log($args);
+            }
+        ],
+        [
+            '$helper',function ($args) {
+                  console && console.log($args);
+            }
+        ]]);
     console && console.log('user model running with framework !');
 })($App);
