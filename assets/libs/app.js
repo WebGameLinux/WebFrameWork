@@ -588,6 +588,15 @@
     $.config('path',{
         jq:'https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js'
     });
+    $.alias(
+        [
+        ['$menu',function ($args) {
+                $.__func('console')($args);
+        }],
+        ['$helper',function ($args) {
+            $.__func('console')($args);
+        }]
+    ]);
 
     console && console.log('user model running with framework !');
 })($App);
