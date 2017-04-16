@@ -595,6 +595,7 @@
         ],
         [
             '$helper',function ($args) {
+
                   console && console.log($args);
             }
         ]]);
