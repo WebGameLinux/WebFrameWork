@@ -64,6 +64,12 @@
   .theme-source-bgcolor{
     background-color:@theme-source-bgcolor;
   }
+  .theme-source-mobile-color{
+    background-color: @theme-source-mobile-color;
+  }
+  .theme-source-platform-color{
+    background-color: @theme-source-platform-color;
+  }
 
   .theme-qrcode-size{
      min-height: 10px;
@@ -140,7 +146,7 @@
   }
 
   #daily-ad-info{
-    min-height: 363px;
+    min-height: 360px;
     max-height: 400px;
     height: auto;
     width: 100%;
@@ -196,7 +202,10 @@
     .alpha(0.2);
   }
   .form{
-    padding-bottom: 20px;
+    padding-bottom: 40px;
+  }
+  .company-info{
+    padding-top: 40px;
   }
   .logo-lang{
     padding-top: 4px;
@@ -210,7 +219,52 @@
     background-image: url(@password-input-image);
     background-size: cover;
   }
-
+  .clock{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    top: 12px;
+    left: -10px;
+    position: relative;
+    background-color:@theme-concat-us-number-color;
+  }
+  .clock-tip{
+    font-size:20px;
+    letter-spacing:2px;
+    margin-bottom:20px;
+  }
+  .domain-area{
+    margin-bottom: 50px;
+  }
+  .daily-data{
+    padding-top:50px;
+  }
+  .data-number,.data-number-flag{
+    width: 20px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    font-size:18px;
+    font-style: normal;
+  }
+  .data-number{
+    border-radius:3px;
+    font-weight: bold;
+    color:@theme-concat-us-number-color;
+    background-color:@theme-card-number-color;
+  }
+  .big-word-tip{
+    margin-bottom: 10px;
+  }
+  .concat-us-number{
+    margin-top:20px;
+  }
+  .concat-us-number{
+    color: @theme-concat-us-number-color;
+  }
+  .text-info{
+    margin-top:40px;
+  }
 
   .no-scrollbar('html');
   .no-scrollbar(div);

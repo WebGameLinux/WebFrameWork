@@ -4,9 +4,32 @@
 ._web(@off:true,@_size:@pc_size)when (@off=true) or (@off=pc){
   .pc({
 
-
-
-
-
   },@_size);
+  .MediaBetweenQuery(@pc_size,2400px,{
+   .img-media-size{
+       width: 800px;
+       min-width: 10%;
+       max-width: 100%;
+       min-height: 50%;
+       max-width: 100%;
+       height: auto;
+       display: block;
+       margin: 0 auto;
+   }
+   .banner_one{
+     width: 1100px;
+     min-width: 10%;
+     max-width: 100%;
+     min-height: 50%;
+     max-width: 100%;
+   }
+  .area-wrap{
+    min-height: 50%;
+  }
+  header,.header{
+    min-height: 50%;
+    height: auto;
+  }
+
+  });
 }
