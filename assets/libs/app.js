@@ -63,17 +63,17 @@
         }
         Object.defineProperties = defineProperties;
     }
-    if (typeof Object.assign != 'function') {
+    if (typeof Object.assign !== 'function') {
         Object.assign = function(target) {
             'use strict';
-            if (target == null) {
+            if (target === null) {
                 throw new TypeError('Cannot convert undefined or null to object');
             }
 
             target = Object(target);
             for (var index = 1; index < arguments.length; index++) {
                 var source = arguments[index];
-                if (source != null) {
+                if (source !== null) {
                     for (var key in source) {
                         if (Object.prototype.hasOwnProperty.call(source, key)) {
                             target[key] = source[key];
@@ -363,7 +363,7 @@
         },
         __EventList :function ($eventType) {
 
-        },
+        }
     });
 })(__App);
 //App builtin api and exports App
@@ -420,7 +420,7 @@
                 var count = $modules instanceof Array ? $modules.length :1,rets = [];
                 if(typeof $modules === 'string'){
                     rets = this.queryModule($modules);
-                    if(rets==-1){
+                    if(rets===-1){
 
                     }else{
                         $task(rets) && this.emitter(this.$name($task.name,'task'),'task_run_success');
@@ -458,7 +458,7 @@
                     this.instance($name,$define.auto());
                 }
             }
-        },
+        }
 
     });
     wind['$App'] =new $(wind);
@@ -484,7 +484,9 @@
                     return ret;
                 }
                 return -1;
-             }]]);
+             }],[
+                 '$dom',$App.root.$ || $App.root.jQuery || $App.__func('console')('jquery is not install!','error')
+        ]]);
     console && console.log('alias for man like to use framework ok !');
 })($App);
 // __func insert
@@ -496,7 +498,7 @@
             if(typeof obj !== 'object'){
                 return;
             } else if($.root.JSON){
-                str = JSON.stringify(obj),   //系列化对象
+                str = JSON.stringify(obj);   //系列化对象
                 newobj = JSON.parse(str); //还原
             } else {
                 for(var i in obj){
@@ -520,11 +522,32 @@
             this.tick = 5;
             this.__start = 0;
             this.__end = -1;
-            this.__store ={};
+            this.__store ={prev:null,now:0,next:this.now+1,list:[]};
             this.timer = function ($key,$value) {
 
             };
             return this;
+        },
+        config:function () {
+
+        },
+        stop:function () {
+
+        },
+        restart:function () {
+
+        },
+        media:function () {
+
+        },
+        next:function () {
+
+        },
+        scrollTo:function () {
+
+        },
+        jumpTo:function () {
+
         },
         __private:function () {
 
