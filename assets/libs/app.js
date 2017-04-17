@@ -373,33 +373,7 @@
         return -1;
     }
     // module system add
-    $.prototype = Object.assign($.prototype,
-    {
-        module: function ($module,$define) {
-            var len = arguments.length,tmp=[];
-            if(len === 1 && typeof $module === 'string'&& $module!==''){
-                return this.__get($module);
-            }
-            if(len === 2 && $module && $define){
-                tmp['define'] = typeof $define;
-                tmp['name'] = typeof $module;
-                tmp['define'] = (tmp['define']==='function' || tmp['define']==='object') ? 1 :((tmp['name']==='function' || tmp['name']==='object')?0:-1);
-                tmp['name'] = (tmp['name']==='string' && $module!=='') ? 0 :((tmp['define']==='string' && $define!=='')?1:-1);
-                if(tmp['name'] === -1|| tmp['define']=== -1){
-                    this.__func('console')('module param error','error'); // test
-                    return -3;
-                }else{
-                    $define = arguments[tmp['define']];
-                    $module = arguments[tmp['name']];
-                    // console.log($define,$module);
-                    return this.__insert($module,$define);
-                }
-            }
-            else{
-                console && console.error('params error: undefined params length of '+len );
-                return -3;  // error params
-            }
-        },
+    $.prototype = Object.assign($.prototype, {
         __exports:function ($name,$define) {
 
         },
@@ -434,9 +408,13 @@
 
         },
         __insert :function ($name,$define) {
-            var ret = this.__heap[$name] ? ( this.__func('console')($name +' name is exists! ','error') && -1 ):this.__heap[$name] = this.__stack.push(typeof $define === 'function'? $define(this):$define ) && this.__stack.length-1;
-            this.emitter($name,'module_install');
-            this.__auto($name,$define);
+            var _len = this.__stack.length,
+                ret = this.__heap[$name] ? ( this.__func('console')($name +' name is exists! ','error') && -1 ):this.__heap[$name] = this.__stack.push(typeof $define === 'function'? $define(this,$name):$define )&&this.__stack.length-1;
+            if(_len===ret){
+                ret = _len+1;
+                this.emitter($name,'module_install');
+                this.__auto($name,$define);
+            }
             return (ret>=0)?1:-1;
         },
         __get:function ($name) {
@@ -457,6 +435,31 @@
                     //console.log($name,$define);
                     this.instance($name,$define.auto());
                 }
+            }
+        },
+        module: function ($module,$define) {
+            var len = arguments.length,tmp=[];
+            if(len === 1 && typeof $module === 'string'&& $module!==''){
+                return this.__get($module);
+            }
+            if(len === 2 && $module && $define){
+                tmp['define'] = typeof $define;
+                tmp['name'] = typeof $module;
+                tmp['define'] = (tmp['define']==='function' || tmp['define']==='object') ? 1 :((tmp['name']==='function' || tmp['name']==='object')?0:-1);
+                tmp['name'] = (tmp['name']==='string' && $module!=='') ? 0 :((tmp['define']==='string' && $define!=='')?1:-1);
+                if(tmp['name'] === -1|| tmp['define']=== -1){
+                    this.__func('console')('module param error','error'); // test
+                    return -3;
+                }else{
+                    $define = arguments[tmp['define']];
+                    $module = arguments[tmp['name']];
+                    // console.log($define,$module);
+                    return this.__insert($module,$define);
+                }
+            }
+            else{
+                console && console.error('params error: undefined params length of '+len );
+                return -3;  // error params
             }
         }
 
@@ -517,51 +520,62 @@
         console && console.error('framework Object ( $App )is not exists !');
         return -2;
     }
-    $.module('carousel',{
-        init:function () {
+    $.module('carousel', function($scope,$name){
+
+        function Carousel($config){
+
+            this.conf = arguments[0] || {};
             this.tick = 5;
             this.__start = 0;
             this.__end = -1;
+            this.$name = $name;
+            this.$root = $scope;
+            this.$scope = function(){return this.scanner(this.conf);};
             this.__store ={prev:null,now:0,next:this.now+1,list:[]};
             this.timer = function ($key,$value) {
 
             };
             return this;
-        },
-        config:function () {
-
-        },
-        stop:function () {
-
-        },
-        restart:function () {
-
-        },
-        media:function () {
-
-        },
-        next:function () {
-
-        },
-        scrollTo:function () {
-
-        },
-        jumpTo:function () {
-
-        },
-        __private:function () {
-
-        },
-        run:function () {
-
-        },
-        auto:function () {
-            console.log('auto run carousel');
-          return  this.init();
-        },
-        destroy:function () {
-
         }
+
+        Carousel.prototype = {
+            constructor :Carousel,
+            config:function () {
+
+            },
+            scanner:function () {
+
+            },
+            stop:function () {
+
+            },
+            start:function () {
+
+            },
+            media:function () {
+
+            },
+            next:function () {
+
+            },
+            scrollTo:function () {
+
+            },
+            jumpTo:function () {
+
+            },
+            reset:function () {
+
+            },
+            auto:function () {
+                console.log('auto run carousel');
+                return  this.init();
+            },
+            destroy:function () {
+
+            }
+        };
+        return Carousel;
     });
     console && console.log('carousel module install framework ok !');
 })($App);
