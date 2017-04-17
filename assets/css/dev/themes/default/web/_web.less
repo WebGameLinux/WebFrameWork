@@ -5,8 +5,8 @@
   .pc({
 
   },@_size);
-  .MediaBetweenQuery(@pc_size,2400px,{
-   .img-media-size{
+  .MediaBetweenQuery(@pc_size,24000px,{
+   /*.img-media-size{
        width: 800px;
        min-width: 10%;
        max-width: 100%;
@@ -15,7 +15,7 @@
        height: auto;
        display: block;
        margin: 0 auto;
-   }
+   }*/
    .banner_one{
      width: 1100px;
      min-width: 10%;
@@ -24,11 +24,17 @@
      max-width: 100%;
    }
   .area-wrap{
-    min-height: 50%;
+    min-height: 0;
   }
   header,.header{
-    min-height: 50%;
+    min-height: 5%;
     height: auto;
+  }
+  .wrap-image[class~="pc-on"]{
+    display: block;
+  }
+  .wrap-image[class~="mobile-on"],.Carousel-item-tips[class~="mobile-on"]{
+      display:none;
   }
 
   });

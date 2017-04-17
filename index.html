@@ -25,38 +25,40 @@
     </nav>
     <header class="header banner theme-alpha">
         <div class="Carousel-container-box container-box">
-            <div class="Carousel-Controller">
+            <!--<div class="Carousel-Controller">
                 <div class="Carousel-Controller-left prev">
                     <a class="btn center" href="javascript:void(0);"></a>
                 </div>
                 <div class="Carousel-Controller-right next">
                     <a class="btn center" href="javascript:void(0);"></a>
                 </div>
-            </div>
+            </div>-->
             <ul class="Carousel-items-default-group" data-toggle="auto-off control-on">
                 <li class="Carousel-item theme-header-item-bgcolor-1 active">
-                    <div class="center-box wrap-image">
-                        <img src="assets/images/v1/banner-mobile.png" class="wrap-image banner_one">
+                    <div class="center-box wrap-image banner">
+                        <img src="assets/images/v1/banner-mobile.png" class="wrap-image banner_one mobile-on">
+                        <img src="assets/images/v1/banner-pc.png" class="wrap-image banner_one pc-on">
                     </div>
                 </li>
                 <!--<li class="Carousel-item theme-header-item-bgcolor-2">
                 </li>-->
             </ul>
-            <div class="Carousel-item-tips on">
+           <!-- <div class="Carousel-item-tips off">
                 <div class="tips"></div>
                 <div class="tips"></div>
                 <div class="tips"></div>
-            </div>
+            </div>-->
         </div>
     </header>
     <div class="area-wrap theme-info-bgcolor" >
         <div class="center-box wrap-image">
-            <img src="assets/images/v1/info.jpg" class="wrap-image img-media-size">
+            <img src="assets/images/v1/info-pc.png" class="wrap-image img-media-size pc-on">
+            <img src="assets/images/v1/info-mobile.jpg" class="wrap-image img-media-size mobile-on">
         </div>
     </div>
     <div class="area-wrap mobile-content-auto theme-source-bgcolor">
         <div class="Carousel-container-box container-box mobile-off">
-            <div class="Carousel-Controller">
+            <div class="Carousel-Controller off">
                 <div class="Carousel-Controller-left prev">
                     <a class="btn center" href="javascript:void(0);"></a>
                 </div>
@@ -64,33 +66,39 @@
                     <a class="btn center" href="javascript:void(0);"></a>
                 </div>
             </div>
-            <ul class="Carousel-items-default-group mobile-off" data-mobile="1108" data-toggle="auto-on control-on">
+
+            <ul class="Carousel-items-default-group mobile-off Carousel-items-group-toggle" data-mobile="1108" data-toggle="auto-on control-on">
                 <li class="Carousel-item white active">
                     <div class="center-box wrap-image theme-source-mobile-color">
-                        <img src="assets/images/v1/source_1.png" class="wrap-image img-media-size">
+                        <img src="assets/images/v1/source-pc-1.png" class="wrap-image pc-on">
+                        <img src="assets/images/v1/source-mobile-1.png" class="wrap-image mobile-on">
                     </div>
                 </li>
                 <li class="Carousel-item white">
                     <div class="center-box wrap-image">
-                        <img src="assets/images/v1/source_2.png" class="wrap-image img-media-size">
+                        <img src="assets/images/v1/source-pc-2.png" class="wrap-image pc-on">
+                        <img src="assets/images/v1/source-mobile-2.png" class="wrap-image mobile-on">
                     </div>
                 </li>
                 <li class="Carousel-item">
                     <div class="center-box wrap-image theme-source-platform-color">
-                        <img src="assets/images/v1/source_3.png" class="wrap-image img-media-size">
+                        <img src="assets/images/v1/source-pc-3.png" class="wrap-image pc-on">
+                        <img src="assets/images/v1/source-mobile-3.png" class="wrap-image mobile-on">
                     </div>
                 </li>
             </ul>
-            <div class="Carousel-item-tips on">
-                <div class="tips"></div>
-                <div class="tips"></div>
-                <div class="tips"></div>
+
+            <div class="Carousel-item-tips pc-on mobile-off">
+                <div class="tips default-tips active"></div>
+                <div class="tips default-tips"></div>
+                <div class="tips default-tips"></div>
             </div>
         </div>
     </div>
     <div class="area-wrap theme-advantage-bgcolor">
         <div class="center-box wrap-image theme-advantage-bgcolor">
-            <img src="assets/images/v1/advantage.png" class="wrap-image img-media-size">
+            <img src="assets/images/v1/advantage-pc.png" class="wrap-image pc-on">
+            <img src="assets/images/v1/advantage-mobile.png" class="wrap-image mobile-on">
         </div>
     </div>
     <div class="area-wrap" id="daily-ad-info">
@@ -181,7 +189,7 @@
 
 <section id="page-tools-area">
         <div class="link-tools off">
-             <a href="#page-top>
+             <a href="#page-top">
                     top
              </a>
              <a href="javascript:$App.$menu('more');">
