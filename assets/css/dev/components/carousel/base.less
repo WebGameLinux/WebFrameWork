@@ -20,8 +20,10 @@
        min-height: @min_height;
        height: auto;
      }
-
-     .@{group} {
+     .Carousel-items-group-toggle li{
+       float:none;
+     }
+     .@{group},.Carousel-items-group-toggle {
        width: @wrapW;
        min-height: @min_height;
        display: block;
@@ -29,10 +31,11 @@
        overflow: @overflow;
      }
 
-     .@{group}[class~='mobile-off'] .Carousel-item{
+     .@{group}[class~='mobile-off'] .Carousel-item,.Carousel-items-group-toggle[class~='mobile-off'] .Carousel-item{
        display: block;
        .alpha(1);
      }
+
    };
   .Carousel-item-tips[class~="mobile-on"]{
     display: block;
@@ -44,6 +47,7 @@
 
   .Carousel-items-group();
 };
+// mobile  rules end
 
 .Carousel-Common(){
 
@@ -66,6 +70,11 @@
     .alpha(0);
     .transition(display 6s);
     .transition(Opacity 3s);
+  }
+  .Carousel-items-group-toggle li{
+      float:right;
+      left: 0;
+      position: relative;
   }
 
   .Carousel-item[class~="active"]{

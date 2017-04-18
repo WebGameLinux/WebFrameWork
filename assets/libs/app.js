@@ -156,23 +156,42 @@
         constructor :App,
         __stack:[], // func
         __heap:{}, // instance index
-        instance:function ($name,$obj) {
+        instance:function ($name,$obj,$hash) {
             var _ = null;
+            $hash = arguments[2] || -1;
             if(!this.__heap.__instance){
                     this.__heap.__instance = {};
             }
             _ = this.__heap.__instance;
             if($name &&  $obj){
-                if($obj.auto) {
-                    delete $obj.auto
+                if($obj.auto || $obj.task ) {
+                    delete $obj.auto || delete $obj.task;
                 }
                 if($obj.instance){
                     return ;
                 }else{
+                    if($obj instanceof  Array) {
+                        for (var i = 0, len = $obj.length; i < len; i++) {
+                            if (!($obj[i].instance)) {
+                                $obj[i].instance = new Date().valueOf();
+                            }
+                        }
+                    }
                     $obj.instance = new Date().valueOf();
                 }
                 if(_[$name]){
-                    return this.__func('console')($name+' instance is exists','error');
+                    if($hash===-1){
+                        return this.__func('console')($name+' instance is exists','error');
+                    }
+                    if(!(_[$name] instanceof  Array)){
+                        _[$name] = [_[$name]];
+                    }
+                    if($obj instanceof  Array){
+                        i=null;len =null;
+                        _[$name] = _[$name].push.apply(_[$name],$obj);
+                    }else{
+                        _[$name].push($obj);
+                    }
                 }
                 _[$name] = $obj;
             }else{
@@ -278,7 +297,7 @@
     $.prototype = Object.assign($.prototype,{
         emitter:function ($eventName,$type,$args) {
             var $e = this.____.$eventRoot;
-
+            console.log($eventName,$type);
         },
         on:function ($eventObject,$define) {
             var $e = this.____.$eventRoot;
@@ -430,10 +449,16 @@
         },
         __auto:function ($name,$define) {
             if($name && $define){
-                var flag = $define && $define.auto;
+                var flag = (typeof $define === 'function') && $define(this,$name);
+
                 if(flag && !$define.instance ){
-                    //console.log($name,$define);
-                    this.instance($name,$define.auto());
+                  //  console.log($name,$define);
+                    if(flag.prototype.task){
+                        this.instance($name,(new flag()).task());
+                    }
+                    if($define && ($define.task || $define.prototype.task)){
+                        this.instance($name,$define.task());
+                    }
                 }
             }
         },
@@ -487,9 +512,14 @@
                     return ret;
                 }
                 return -1;
-             }],[
-                 '$dom',$App.root.$ || $App.root.jQuery || $App.__func('console')('jquery is not install!','error')
-        ]]);
+             }],
+        [
+            '$dom', $App.root.$ || $App.root.jQuery || $App.__func('console')('jquery is not install!','error')
+        ],
+        [
+            '$',$App.root.$ || $App.root.jQuery || $App.__func('console')('jquery is not install!','error')
+        ]
+    ]);
     console && console.log('alias for man like to use framework ok !');
 })($App);
 // __func insert
@@ -524,14 +554,30 @@
 
         function Carousel($config){
 
-            this.conf = arguments[0] || {};
-            this.tick = 5;
-            this.__start = 0;
-            this.__end = -1;
+            this.conf =Object.assign(arguments[0]||{},{
+                'container':'.Carousel-container-box',
+                'scroll-controller':'.Carousel-Controller',
+                'scroll-tips':'.Carousel-item-tips',
+                'list-container':'.Carousel-items-group-toggle',
+                'items':'.Carousel-item',
+                'active':'.active',
+                'mode':'scrollTo',
+                'start':0,
+                'long':-1,
+                'tick':4000
+            });
+
+
             this.$name = $name;
             this.$root = $scope;
-            this.$scope = function(){return this.scanner(this.conf);};
-            this.__store ={prev:null,now:0,next:this.now+1,list:[]};
+            if(!this.$root.$dom){
+                console && console.error && console.error(this.name + 'module can not find frame work $dom !');
+                return -3;
+            }
+            this.$dom = this.$root.$dom;
+            this.$ = this.$dom;
+            this.$scope =null;
+            this.__store ={prev:0,now:0,next:0,list:[]};
             this.timer = function ($key,$value) {
 
             };
@@ -540,39 +586,291 @@
 
         Carousel.prototype = {
             constructor :Carousel,
-            config:function () {
-
+            config:function ($key,$value) {
+                if($key && $value!==undefined ){
+                    if(this.__store[$key]!==undefined){
+                        if($key==='now'||$key==='prev'||$key==='next'){
+                            $value = ($value<0?null:$value) ;
+                            $value = ($value >= this.__store.list.length ? null : $value)<0? null : $value;
+                        }
+                        if($key==='list'&&$value===null){
+                            this.__store[$key].splice(0,this.__store[$key].length);
+                        }
+                        else {
+                            console.log($key,$value);
+                            this.__store[$key] = $value;
+                        }
+                    }else{
+                        this.conf[$key] = $value;
+                    }
+                }
+                if($key && typeof  $key === 'object'){
+                   for( var arr in $key){
+                       this.config(arr,$key[arr]);
+                       // console.log('back config',arr,$key[arr]);
+                   }
+                }
+                if($key && typeof $key==='string' && $value===undefined){
+                    if(this.__store[$key]!==undefined){
+                     return   this.__store[$key];
+                    }else if(this.conf[$key]!==undefined) {
+                        return this.conf[$key];
+                    }
+                    return undefined;
+                }
+                return true;
             },
-            scanner:function () {
-
+            scanner:function ($conf) {
+                if(!$conf){
+                    $conf = this.conf ;
+                    if(!$conf){
+                        console && console.warn && console.warn(this.name + 'module scanner failed ! config error !');
+                        return -1;
+                    }
+                }
+                if(!($conf.hasOwnProperty('container')&&$conf.hasOwnProperty('list-container'))){
+                    console && console.warn && console.warn(this.name + 'module config params undefined!!');
+                    return -2;
+                }
+                var scope = this.$dom($conf.container);
+                return scope || -1;
             },
             stop:function () {
-
+                if(this.config('runner')){
+                    clearInterval(this.config('runner'));
+                }
             },
             start:function () {
-
+                if(!this.$scope){
+                    this.$scope = this.scanner();
+                   if(this.$scope){
+                      this.$scope = this.$scope.length ? false : this.$scope;
+                      if(!this.$scope){
+                          console && console.error && console.error('$scope too mush failed to match!');
+                          return -5;
+                      }
+                   }else{
+                       console && console.error && console.error('$scope init failed');
+                       return -4;
+                   }
+                }
+                if(!(this.__store.list instanceof  Array)){
+                    console && console.error && console.error('list-container modify prototype constructor !!');
+                    return -7;
+                }
+                if(this.conf['list-container']){
+                    //console.log(this.$dom(this.$scope).children(this.conf['list-container']));
+                    this.config('listBox',this.$dom(this.$scope).find(this.conf['list-container']));
+                }else{
+                    console && console.error && console.error('list-container element undefined !!');
+                    return -6;
+                }
+                this.list();
+                return this.$run();
             },
             media:function () {
 
             },
-            next:function () {
-
+            prev:function () {
+               return this.next(this.config('now'),this.config('prev'));
             },
-            scrollTo:function () {
-
+            next:function ($des,$to) {
+               // console.log(this,this.counter);
+                if(!this.counter()){
+                    return this.stop();
+                }
+                if(this.config('now') === this.config('next')){
+                    this.sort();
+                }
+                var mode = this.config('mode'),
+                    now = $des || this.config('now') ,
+                    next = $to || this.config('next'),
+                    len  =this.config('list').length;
+                if(typeof now  === 'number' || typeof next === 'number'){
+                    if(typeof now=== 'number' && ($des<0 && this.config('now')>0 && now === $des|| $des>=len && this.config('now')<len && now === $des)){
+                        now = this.config('now');
+                    }
+                    if( typeof next === 'number' && ($to<0&&this.config('next')>0 && next === $to||$to>=len && this.config('next')<len && next === $to )){
+                        next = this.config('next');
+                    }
+                }
+                else if(typeof now === 'object' || typeof next === 'object'){
+                    var list = this.config('list');
+                    for(var i=0;i<len;i++){
+                        if(list[i]===now){
+                            now = this.$dom(list[i]).data('index');
+                        }
+                        if(list[i]===next){
+                            next = this.$dom(list[i]).data('index');
+                        }
+                    }
+                    list = null;
+                }else{
+                    console && console.error && console.error('TypeError: param errors !');
+                    return -5;
+                }
+                if(typeof this[mode] === 'function'){
+                  //  console.log('next',now,next,this.config('now'),this.config('next'));
+                    if(this[mode](now,next)){
+                        len = now = mode = next = null;
+                        return ;
+                    }else{
+                        console && console.error && console.error(this.name+' runner failed to scroll !');
+                    }
+                }
+                console && console.error && console.error(this.name+' run mode not exists!');
+                return null;
             },
-            jumpTo:function () {
+            scrollTo:function ($des,$to) {
+                var _ = this.config('list'),des , to,active = this.config('active').replace('.','') ;
+                if(typeof $des === 'number' && typeof $to === 'number'){
+                    des = _[$des];
+                    to = _[$to];
+                }
+                if(!(des && to)){
+                    console && console.error && console.error('scrollTo params  error!');
+                }
+                if(des !== to){
+                    this.$(to).addClass(active);
+                    this.$(to).css({left:0,Opacity:1});
+                    this.$(des).animate({left:"-100%",Opacity:0},2000);
+                    this.tips($des,$to);
+                    this.$(des).removeClass(active);
+                    this.$(to).css({left:"100%",Opacity:0});
+                    this.$(to).animate({left:0,Opacity:1},1050);
+                    active = _ = des = to = null;
+                    this.sort();
+                }
+                /*{
+                   var t = this.animation('dom',{}).and('',{}).then('',{}).action();
 
+                   t.stop();
+                   t.continue();
+                   t.killed();
+                   t.add();
+                   this.animate.addMode();
+                   this.animation().on();
+
+                   new (this.module('animation'));
+
+                }*/
+
+                return true;
+            },
+            jumpTo:function ($des,$to) {
+                var _ = this.config('list');
+
+                _ = null;
+                return true;
+            },
+            $bind:function () {
+
+                return true;
             },
             reset:function () {
 
             },
-            auto:function () {
+            task:function () {
                 console.log('auto run carousel');
-                return  this.init();
+                var scope = this.scanner(),ret=[];
+                if(scope && scope.length >1){
+                    for(var i=0,len=scope.length;i<len;i++){
+
+                        var _ =new Carousel();
+                            _.$scope = scope[i];
+                            _.start();
+
+                            ret.push(_);
+                    }
+                    _ = null;
+                }else{
+                    ret = null;
+                    return scope;
+                }
+                scope = null;
+                return  ret;
+            },
+            $run:function () {
+                // media
+              return  this.config('runner',setInterval(this.next.bind(this),this.config('tick')||150)) && this.$bind();
+            },
+            list:function () {
+                var now = -1;
+                if(this.__store.list){
+                    if(typeof this.__store.list.length &&this.__store.list.length === 0){
+                           this.__store.list = this.$dom(this.config('items'),this.config('listBox'));
+                    }
+                    for(var i =0,len = this.__store.list.length;i<len;i++){
+                        var _ = this.$dom(this.__store.list[i]);
+                           _.data('index',i);
+                        /*   console.log('active',_.hasClass(this.config('active')));*/
+                    }
+                }
+               if(this.__store.list.length === 0){
+                    console && console.error && console.error('list-container is empty no match any elements !!');
+                    _ = i = len = now = null;
+                    return -8;
+                }
+                this.sort();
+                _ = i = len = now = null;
+            },
+            /**
+             * 统计 滚动时限
+             * @return  boolean
+             * **/
+            counter:function () {
+                return true;
+            },
+            tips:function ($des,$to) {
+
+                return true;
+            },
+            sort:function () {
+                var i= prev = now = next = 0 ,_ = this.config('list'),len = _.length,active = this.config('active').replace('.','');
+                for(;i<len;i++){
+                   if(this.$dom(_[i]).hasClass(active)){
+                        now = i;
+                   }
+                }
+                prev = now -1 < 0 ?len-1:now -1;
+                next = now +1 >len-1 ? 0 :now +1;
+               // console.log(prev,now,next);
+                this.config({
+                    prev:prev,
+                    now:now,
+                    next:next
+                });
+                _ = i = len = prev = now = next = null;
+            },
+            /**
+             * 定时调优 器
+             * @return  boolean
+             * **/
+            ticker:function () {
+
+            },
+            /**
+             * 添加新的 滚动模式
+             * @param $name : String [模式名称]
+             * @param $define : Function [模式定义函数]
+             * @return mixin | boolean
+             * **/
+            addMode:function ($name,$define) {
+                if($name && $define ){
+                    if(typeof $name==='string' && $name!==''){
+                      return typeof $define === 'function'?this[$name] = $define:false;
+                    }
+                }
+                return null;
             },
             destroy:function () {
-
+               this.$bind(null);
+               this.conf['listBox'] = null;
+               this.conf['runner']= null;
+               this.$scope = null;
+               this.reset();
+               this.stop();
+               delete this;
             }
         };
         return Carousel;
@@ -604,8 +902,9 @@
             run:function () {
 
             },
-            auto:function () {
+            task:function () {
 
+                return this;
             },
             destroy:function () {
 
@@ -615,7 +914,67 @@
     });
     console && console.log('nav module install framework ok !');
 })($App);
+// real time data
++(function ($) {
+
+    if(!$ || typeof $ !== 'object' || !$.hasOwnProperty('root')){
+        console && console.error('framework Object ( $App )is not exists !');
+        return -2;
+    }
+    $.module('realTimeData', function($scope,$name){
+
+        function RealTimeData($config){
+
+            this.conf =  {
+
+            };
+            this.tick = 5;
+            this.__start = 0;
+            this.__end = -1;
+            this.$name = $name;
+            this.$root = $scope;
+            this.$scope = function(){return this.scanner(this.conf);};
+            this.__store ={prev:null,now:0,next:this.now+1,list:[]};
+            this.timer = function ($key,$value) {
+
+            };
+            return this;
+        }
+
+        RealTimeData.prototype = {
+            constructor :RealTimeData,
+            config:function () {
+
+            },
+            scanner:function () {
+
+            },
+            stop:function () {
+
+            },
+            start:function () {
+
+            },
+            media:function () {
+
+            },
+            reset:function () {
+
+            },
+            task:function () {
+                console.log('auto run carousel');
+                return  this;
+            },
+            destroy:function () {
+
+            }
+        };
+        return RealTimeData;
+    });
+    console && console.log('RealTimeData module install framework ok !');
+})($App);
 // model list
+
 // user scope
 +(function ($) {
     if(!$ || typeof $ !== 'object' || !$.hasOwnProperty('root')){
