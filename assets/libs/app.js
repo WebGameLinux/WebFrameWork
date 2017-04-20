@@ -62,7 +62,8 @@
 
             var that = typeof window === 'object' && this === window ? {} : this;
 
-            that.__proto__._M_V_P_ = App.___.eventlist = {};
+            that.__proto__._M_V_P_ = App.___.eventlist = {
+            };
 
             that.on = function($eveName,$handler,$evenTarget){
 
@@ -123,7 +124,9 @@
                      }
                      else{
                          for(var i in this){
-                             $fnObj[i] = $fnObj[i] ? $fnObj[i] : this[i];
+                             if(i!=='event'){
+                                 $fnObj.__proto__[i] = $fnObj[i] ? $fnObj[i] : this[i];
+                             }
                          }
                          i = null;
                      }
@@ -132,7 +135,10 @@
             that.add  = function ($target,$eventName,$handler) {
 
             };
-            that.exists =function ($name) {
+            that.alias = function () {
+
+            };
+            that.exists = function ($name) {
 
             };
 
