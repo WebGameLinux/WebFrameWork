@@ -32,3 +32,8 @@ bin-release/
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
 >>>>>>> 779699d26289d67c1f77440288797e864d467e12
+assets/css/dev/animation/2d/
+assets/css/dev/animation/3d/
+assets/css/dev/layout/themelayout/
+assets/css/dist/
+assets/libs/dev/

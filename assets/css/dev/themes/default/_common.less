@@ -267,6 +267,19 @@
     margin-top:40px;
   }
 
+
+  #model-area{
+    position: fixed;
+    overflow: scroll;
+  }
+
+  #model-area[class~="on"],#model-area[class~="mobile-on"]{
+    display: inherit;
+  }
+  #model-area[class~="off"],#model-area[class~="mobile-off"]{
+    display: none;
+  }
+
   .no-scrollbar('html');
   .no-scrollbar(div);
 
