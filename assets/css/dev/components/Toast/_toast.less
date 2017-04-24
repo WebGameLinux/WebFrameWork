@@ -1,0 +1,28 @@
+@charset "UTF-8";
+@import "config";
+@import "../shapes/triangle";
+.Toast(@on:@toast-on)when(@on=true){
+  .ui-toast{
+     min-width: @toast-min-width;
+     min-height: @toast-min-height;
+     width: auto;
+     height: auto;
+     border-radius: 10px;
+     color: @toast-color;
+     background-color: @toast-bg;
+     text-align: center;
+     position: relative;
+     z-index:1000;
+     top:-200%;
+  }
+  .ui-toast:after{
+      width: 0;
+      height: 0;
+      .triangle(down,@toast-triangle-size,@toast-bg);
+      position: absolute;
+      bottom: -@toast-triangle-size;
+      left: 50%;
+  }
+}
+
+.Toast();

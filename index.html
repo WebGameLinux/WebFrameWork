@@ -13,7 +13,10 @@
     <link href="assets/css/style.min.css" type="text/css" rel="stylesheet"/>
     <!--< 浏览器能力检测 modernizr.js  >-->
     <script src="https://cdn.bootcss.com/modernizr/2.8.3/modernizr.min.js"></script>
+    <!--< 浏览器前端工具库 jquery.js  >-->
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <!--< 点击复制到黏贴板 clipboard.js  >-->
+    <script src="https://cdn.bootcss.com/clipboard.js/1.6.1/clipboard.min.js"></script>
 </head>
 
 <body id="root">
@@ -123,11 +126,11 @@
                     <div class="portrait center-box shape-circle theme-portrait">
                         <img src="assets/images/v1/portrait.png" class="center-box wrap-image shape-circle">
                     </div>
-                    <div class="input username center-box">
-                        username
+                    <div class="input username center-box" data-clipboard-text="demo@hyperyoung.com">
+
                     </div>
-                    <div class="small-tip input password center-box">
-                        password
+                    <div class="small-tip input password center-box" data-clipboard-text="demodemo">
+
                     </div>
                     <div class="btn theme-btn-submit font-white center-box align-center" onclick="$App.$helper('try-dsp');">
                             立即体验
