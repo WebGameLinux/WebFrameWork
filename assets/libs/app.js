@@ -379,6 +379,7 @@
                 this.node.innerHTML = this.msg();
             }
             tpl = null;
+            this.$(this.node).css({opacity:0});
             return this.node;
         };
         Toast.prototype.template =function ($html) {
@@ -451,6 +452,7 @@
         };
         Toast.prototype.show =function ($callback) {
             this.$(this.container()).append(this.node);
+            this.$(this.node).animate({opacity:1},300);
             if(this.fn && typeof this.fn.showCallback === 'function'){
                 this.fn.showCallback(this);
             }
@@ -464,7 +466,7 @@
                 $config = {delay:1000};
             }
             setTimeout(function(that){
-                that.self.$(that.node).animate({opacity:0},1000);
+                that.self.$(that.node).animate({opacity:0},1500);
                 that.self.$(that.node).remove();
                 if(that.$callback instanceof Array){
                     for(var i =0 ,len=that.$callback.length;i<len;i++){
@@ -506,6 +508,8 @@
            });
         }
     }
+
+
     texts = null;
 
 })($App);
